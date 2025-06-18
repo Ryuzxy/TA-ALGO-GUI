@@ -1,0 +1,50 @@
+{% extends "base.html" %}
+
+{% block title %}Struk - Broder Coffee{% endblock %}
+
+{% block content %}
+<div class="container">
+    <div class="card mt-5">
+        <div class="card-header bg-dark text-white text-center">
+            <h3>Struk Pembelian</h3>
+        </div>
+        <div class="card-body">
+            <p><strong>Tanggal/Waktu:</strong> {{ struk.waktu }}</p>
+            
+            <table class="table table-bordered">
+                <thead class="table-light">
+                    <tr>
+                        <th>No</th>
+                        <th>Nama Menu</th>
+                        <th>Jumlah</th>
+                        <th>Harga Satuan</th>
+                        <th>Subtotal</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for item in struk.pesanan %}
+                    <tr>
+                        <td>{{ loop.index }}</td>
+                        <td>{{ item.nama }}</td>
+                        <td>{{ item.jumlah }}</td>
+                        <td>Rp{{ "{:,}".format(item.harga).replace(",", ".") }}</td>
+                        <td>Rp{{ "{:,}".format(item.harga * item.jumlah).replace(",", ".") }}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+                <tfoot>
+                    <tr>
+                        <th colspan="4" class="text-end">Total</th>
+                        <th>Rp{{ "{:,}".format(struk.total).replace(",", ".") }}</th>
+                    </tr>
+                </tfoot>
+            </table>
+
+            <div class="text-center mt-4">
+                <a href="/menu" class="btn btn-secondary">Kembali ke Menu</a>
+                <a href="/" class="btn btn-primary">Kembali ke Dashboard</a>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,50 @@
+{% extends "base.html" %}
+
+{% block title %}Pesan - Broder Coffee{% endblock %}
+
+{% block content %}
+<div class="container">
+    <h1 class="text-center mb-4">Pesan Menu</h1>
+
+    {% with messages = get_flashed_messages() %}
+      {% if messages %}
+        {% for msg in messages %}
+        <div class="alert alert-danger">{{ msg }}</div>
+        {% endfor %}
+      {% endif %}
+    {% endwith %}
+
+    <form method="post">
+        <table class="table table-bordered">
+            <thead class="table-dark">
+                <tr>
+                    <th>Nama Menu</th>
+                    <th>Harga</th>
+                    <th>Jumlah</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for item in menu %}
+                <tr>
+                    <td>{{ item.nama }}</td>
+                    <td>Rp{{ "{:,}".format(item.harga).replace(",", ".") }}</td>
+                    <td>
+                        <input type="number" class="form-control" name="qty_{{ loop.index0 }}" min="0" value="0">
+                        <input type="hidden" name="nama_{{ loop.index0 }}" value="{{ item.nama }}">
+                        <input type="hidden" name="harga_{{ loop.index0 }}" value="{{ item.harga }}">
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+
+        <input type="hidden" name="jumlah_item" value="{{ menu|length }}">
+
+        <button type="submit" class="btn btn-success w-100">Pesan Sekarang</button>
+    </form>
+
+    <div class="mt-4">
+        <a href="/menu" class="btn btn-secondary">Kembali ke Menu</a>
+    </div>
+</div>
+{% endblock %}

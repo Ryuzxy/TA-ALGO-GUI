@@ -1,0 +1,47 @@
+{% extends "base.html" %}
+{% block title %}Dashboard Administrator - Broder Coffee{% endblock %}
+{% block content %}
+<div class="text-center mb-4">
+    <h1>Selamat Datang di Dashboard Admin Broder Coffee</h1>
+    <p class="lead">Kelola data Menu</p>
+</div>
+
+<div class="row">
+    <div class="col-md-4 mb-3">
+        <div class="card shadow-sm">
+            <div class="card-body text-center">
+                <h5 class="card-title">Update</h5>
+                <p class="card-text">Update Menu</p>
+                <a href="/updatemenu" class="btn btn-primary">Edit</a>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4 mb-3">
+        <div class="card shadow-sm">
+            <div class="card-body text-center">
+                <h5 class="card-title">Delete</h5>
+                <p class="card-text">Hapus Menu</p>
+                <a href="/deletemenu" class="btn btn-success">Del</a>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4 mb-3">
+        <div class="card shadow-sm">
+            <div class="card-body text-center">
+                <h5 class="card-title">Tambah</h5>
+                <p class="card-text">Tambah Menu.</p>
+                <a href="/addmenu" class="btn btn-danger">Add</a>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4 mb-3">
+        <div class="card shadow-sm">
+            <div class="card-body text-center">
+                <h5 class="card-title">Kembali</h5>
+                <p class="card-text">Kembali ke Dashboard</p>
+                <a href="/dashboard" class="btn btn-success">Kembali</a>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

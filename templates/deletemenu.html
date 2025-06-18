@@ -1,0 +1,56 @@
+{% extends "base.html" %}
+{% block title %}Hapus Menu{% endblock %}
+{% block content %}
+{% if menu %}
+    <h3 class="mt-5">Daftar Menu</h3>
+    <table class="table table-bordered">
+        <thead class="table-dark">
+            <tr>
+                <th>No</th>
+                <th>Nama Menu</th>
+                <th>Harga</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for item in menu %}
+            <tr>
+                <td>{{ loop.index + ((page - 1) * 10) }}</td>
+                <td>{{ item.nama }}</td>
+                <td>Rp{{ "{:,}".format(item.harga).replace(",", ".") }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    <nav aria-label="Page navigation">
+        <ul class="pagination justify-content-center">
+            {% if page > 1 %}
+            <li class="page-item">
+                <a class="page-link" href="{{ url_for(request.endpoint, page=page-1) }}">Sebelumnya</a>
+            </li>
+            {% endif %}
+            {% for p in range(1, total_pages + 1) %}
+            <li class="page-item {% if p == page %}active{% endif %}">
+                <a class="page-link" href="{{ url_for(request.endpoint, page=p) }}">{{ p }}</a>
+            </li>
+            {% endfor %}
+            {% if page < total_pages %}
+            <li class="page-item">
+                <a class="page-link" href="{{ url_for(request.endpoint, page=page+1) }}">Berikutnya</a>
+            </li>
+            {% endif %}
+        </ul>
+    </nav>
+{% endif %}
+<div class="container mt-5">
+    <h2 class="mb-4">Hapus Menu</h2>
+    <form method="post">
+        <div class="mb-3">
+            <label class="form-label">Nama Menu yang Akan Dihapus</label>
+            <input type="text" name="nama_hapus" class="form-control" required>
+        </div>
+        <button type="submit" class="btn btn-danger">Hapus</button>
+        <a href="/dashboardadmin" class="btn btn-secondary">Batal</a>
+    </form>
+</div>
+{% endblock %}

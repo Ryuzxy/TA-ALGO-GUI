@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+{% block title %}Dashboard - Broder Coffee{% endblock %}
+{% block content %}
+<div class="text-center mb-4">
+    <h1>Selamat Datang di Dashboard Broder Coffee</h1>
+    <p class="lead">Silahhkan di pilih</p>
+</div>
+
+<div class="row">
+    <div class="col-md-4 mb-3">
+        <div class="card shadow-sm">
+            <div class="card-body text-center">
+                <h5 class="card-title">Menu</h5>
+                <p class="card-text">Lihat dan Cari Menu disini</p>
+                <a href="/menu" class="btn btn-primary">Menu</a>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4 mb-3">
+        <div class="card shadow-sm">
+            <div class="card-body text-center">
+                <h5 class="card-title">Riwayat Pesanan</h5>
+                <p class="card-text">Cek riwayat transaksi dan pesanan pelanggan.</p>
+                <a href="/riwayat" class="btn btn-success">Lihat Riwayat</a>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4 mb-3">
+        <div class="card shadow-sm">
+            <div class="card-body text-center">
+                <h5 class="card-title">Logout</h5>
+                <p class="card-text">Keluar dari sistem.</p>
+                <a href="/logout" class="btn btn-danger">Logout</a>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
