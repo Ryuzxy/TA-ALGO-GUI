@@ -17,13 +17,14 @@ def baca_menu():
     except FileNotFoundError:
         return []
 
-def bubble_sort(data, key, ascending=True):
-    n = len(data)
-    for i in range(n):
-        for j in range(0, n-i-1):
-            if (data[j][key] > data[j+1][key] and ascending) or (data[j][key] < data[j+1][key] and not ascending):
-                data[j], data[j+1] = data[j+1], data[j]
-    return data
+def quick_sort(data, key, ascending=True):
+    if len(data) <= 1:
+        return data
+    pivot = data[len(data) // 2][key]
+    left = [x for x in data if (x[key] < pivot and ascending) or (x[key] > pivot and not ascending)]
+    middle = [x for x in data if x[key] == pivot]
+    right = [x for x in data if (x[key] > pivot and ascending) or (x[key] < pivot and not ascending)]
+    return quick_sort(left, key, ascending) + middle + quick_sort(right, key, ascending)
 
 def binary_search(data, key, target):
     left, right = 0, len(data) - 1
@@ -73,11 +74,10 @@ def menu():
     search = request.args.get('search')
 
     if sort in ['nama', 'harga']:
-        data_menu = bubble_sort(data_menu, sort, ascending=order)
-
+        data_menu = quick_sort(data_menu, sort, ascending=order)
     if search:
         search = search.strip()
-        data_menu = bubble_sort(data_menu, 'nama', ascending=True)
+        data_menu = quick_sort(data_menu, 'nama', ascending=True)
         hasil = binary_search(data_menu, 'nama', search)
         data_menu = [hasil] if hasil else []
 
